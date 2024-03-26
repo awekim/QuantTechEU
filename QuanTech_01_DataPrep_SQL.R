@@ -22,11 +22,17 @@ library("RMariaDB")
 ### Create TechEvo connection
 m <- dbDriver("MySQL")
 con <- dbConnect(m, # MySQL()
-                 host = ,
-                 port = ,
-                 user = ,
-                 dbname= , 
-                 password = )
+                 host = 'tevo.mysql.database.azure.com',
+                 port = 3306,
+                 user = 'keungoui@tevo',
+                 dbname= 'wos', 
+                 password = 'Password1!')
+con <- dbConnect(m, # MySQL()
+                 host = 'localhost', #
+                 port = 3306,
+                 user = 'root',
+                 dbname= 'wos2024', 
+                 password = '1009')
 
 ### Create institution-address table
 # (addresses) 35,479,730 ~ (addresses_geocoded) 35,453,162
@@ -41,6 +47,81 @@ inst_address <- dbFetch(inst_address.SQL, n=-1)
 length(unique(inst_address$pubid)) # 
 save(inst_address, file="R file/inst_address.RData")
 rm(inst_address, inst_address.SQL)
+
+# OLD VERSION
+# keywords_qc1.SQL <- RMySQL::dbSendQuery(
+#   con, paste(
+#     "SELECT distinct pub_keywords.pubid, keywords.keyword, keywords.kw_id",
+#     "FROM wos.keywords keywords",
+#     "INNER JOIN wos.pub_keywords pub_keywords",
+#     "ON keywords.kw_id = pub_keywords.kw_id",
+#     'WHERE keywords.keyword LIKE "QUANTUM%" or keywords.keyword LIKE "QUBIT%"' #'%quantum%'
+#   ))
+
+# qc: quantum tech
+
+# qc1: 양자컴퓨팅
+# qc11: 큐비트구현기술 
+# qc111: 큐비트구현 기반기술
+# qc112: 큐비트물리적 구현기술
+# qc113: 큐비트양자얽힘게이트구현 기술
+
+# qc12: 큐비트제어 고전 HW 기술
+# qc121: 다중 큐비트상태 측정 하드웨어 기술 
+# qc122: 다중 큐비트게이트신호생성 하드웨어 및 제어 기술
+# qc123: 고속 하드웨어 제어 프로세서 및 펌웨어 기술
+
+# qc13: 양자 SW 스택
+# qc131: 양자컴퓨터 프론트엔드 및 백엔드 소프트웨어 스택 
+# qc132: 양자 정보 및 양자컴퓨팅 이론
+# qc133: 양자 오류 보정 및 제어 이론
+# qc134: 양자 컴퓨터 알고리즘
+
+# qc14: 확장가능한 복합양자HW 기술
+# qc141: 시스템 통합화 및 확장가능한 큐비트아키텍쳐 
+# qc142: 확장가능한 이종양자 인터페이스
+# qc143: 양자 시뮬레이터
+
+# qc2: 양자통신
+
+# qc21: 양자암호통신
+# qc211: 유선 양자암호
+# qc212: 무선(자유 공간) 양자암호
+# qc213: QKD 네트워크
+
+# qc22: 양자네트워크
+# qc221: 양자전송
+# qc222: 양자 네트워크
+# qc223: 위성 양자 통신
+# qc224: 양자통신이론
+# qc225: 양자통신용 소재/소자기술
+
+# qc3: 양자센싱
+
+# qc31: 양자센싱
+# qc311: 양자 관성센서
+# qc312: 양자 자기장 센서
+# qc313: 양자 전기장 센서
+# qc314: 양자 광학 센서
+# qc315: 양자 시간및주파수 센서
+
+# qc32: 양자계측
+# qc321: 양자 센싱 기반기술
+
+# qc4: 양자기반기술	
+# qc41: 양자정보기술	
+# qc42:양자소부장	
+# qc421: 양자광원용 Wide Band-Gap 소부장기술
+# qc422: 양자광원검출 초전도 소부장 기술
+# qc423: 양자기술용 III-V & Si 소부장기술
+# qc424: 양자기술용 결정 & 유전체 소부장 기술
+# qc43: 양자지원기술	
+# qc44: 큐빗플랫폼	초천도
+# qc441: 이온트랩
+# qc442: 반도체 양자점
+# qc443: 중성원자
+# qc444: 고체상태결함
+# qc445: R06 광자
 
 ####
 # qc11 --> start from qc1 then search in R
@@ -4327,7 +4408,7 @@ keywords_qc422.SQL <- RMySQL::dbSendQuery(
     ))"
   ))
 keywords_qc422 <- dbFetch(keywords_qc422.SQL, n=-1)
-length(unique(keywords_qc422$pubid)) # 
+length(unique(keywords_qc422$pubid)) # 76,511
 save(keywords_qc422, file="R file/keywords_qc422.RData")
 rm(keywords_qc422, keywords_qc422.SQL)
 
@@ -4397,7 +4478,7 @@ publication_qc422.SQL <- RMySQL::dbSendQuery(
     ))"
   ))
 publication_qc422 <- dbFetch(publication_qc422.SQL, n=-1)
-length(unique(publication_qc422$pubid)) # 
+length(unique(publication_qc422$pubid)) # 5,937,340
 save(publication_qc422, file="R file/publication_qc422.RData")
 rm(publication_qc422, publication_qc422.SQL)
 
@@ -4766,7 +4847,7 @@ keywords_qc442.SQL <- RMySQL::dbSendQuery(
     )"
   ))
 keywords_qc442 <- dbFetch(keywords_qc442.SQL, n=-1)
-length(unique(keywords_qc442$pubid)) # 
+length(unique(keywords_qc442$pubid)) # 0
 save(keywords_qc442, file="R file/keywords_qc442.RData")
 rm(keywords_qc442, keywords_qc442.SQL)
 
@@ -4805,6 +4886,7 @@ publication_qc442 <- dbFetch(publication_qc442.SQL, n=-1)
 length(unique(publication_qc442$pubid)) # 2690
 save(publication_qc442, file="R file/publication_qc442.RData")
 rm(publication_qc442, publication_qc442.SQL)
+
 
 ########################################
 
