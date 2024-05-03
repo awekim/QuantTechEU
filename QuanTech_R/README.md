@@ -1,4 +1,4 @@
-### R codes for Quantum Technology
+### R codes for Quantum Technology Project
 
 - QuanTech_01_DataPrep_SQL.R: R & SQL codes for extrating QuanTech publications from WoS
 - QuanTech_01_DataPrep_SQL_KISTEP.R: R & SQL codes for extracting QuanTech publication with KISTEP rules
