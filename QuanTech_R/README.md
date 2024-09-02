@@ -5,3 +5,4 @@
 - QuanTech_02_DataPrep_SQLSum.R: R codes for summarizing the QuanTech tables
 - QuanTech_03_DataExploration.R: R codes for data exploration
 - QuanTech_04_NetworkAnalyis.R: R codes for network analysis
+- QuanTech_05_RevisedAnalysis.R: R codes for final analysis
