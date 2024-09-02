@@ -67,16 +67,16 @@ keywords_kqc02.SQL <- RMySQL::dbSendQuery(
     'FROM wos.publications publications',
     'WHERE publications.doc_type ="Article" AND 
     publications.pubyear >= 2010 AND publications.pubyear <= 2022 AND',
-    '(LOWER(publications.itemtitle) LIKE "%quantum%technolog%" OR 
-      LOWER(publications.itemtitle) LIKE "%quantum% %technolog%" OR 
-      LOWER(publications.itemtitle) LIKE "%quantum% % %technolog%")
+    '(LOWER(publications.itemtitle) LIKE "%quantum technolog%" OR 
+      LOWER(publications.itemtitle) LIKE "%quantum % technolog%" OR
+      LOWER(publications.itemtitle) LIKE "%quantum % % technolog%")
     OR 
-    (LOWER(publications.abstract) LIKE "%quantum%technolog%" OR 
-      LOWER(publications.abstract) LIKE "%quantum% %technolog%" OR 
-      LOWER(publications.abstract) LIKE "%quantum% % %technolog%")'
+    (LOWER(publications.abstract) LIKE "%quantum technolog%" OR 
+      LOWER(publications.abstract) LIKE "%quantum % technolog%" OR
+      LOWER(publications.abstract) LIKE "%quantum % % technolog%")'
   ))
 keywords_kqc02 <- dbFetch(keywords_kqc02.SQL, n=-1)
-length(unique(keywords_kqc02$pubid)) # 16,307
+length(unique(keywords_kqc02$pubid)) # 943
 save(keywords_kqc02, file="R file/keywords_kqc02.RData")
 rm(keywords_kqc02, keywords_kqc02.SQL)
 

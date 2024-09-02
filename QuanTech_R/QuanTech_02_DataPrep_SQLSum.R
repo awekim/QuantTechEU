@@ -43,8 +43,10 @@ con <- dbConnect(m, # MySQL()
 ### Get list of files
 file.list <- list.files(path='R file/', pattern = 'qc.*\\.RData')
 # Remove qc11 & qv.file.list
-file.list <- file.list[-c(1,80)]
-length(file.list)
+file.list <- file.list[!grepl("kqc", file.list)]
+file.list <- file.list[!grepl("list", file.list)]
+file.list <- file.list[!grepl("keywords_qc11.RData", file.list)]
+length(file.list) # 79
 
 qc.file.list <- 0
 for (i in 1:length(file.list)){
@@ -67,8 +69,8 @@ qc.file.list <- qc.file.list[2:nrow(qc.file.list),]
 qc.file.list %<>% arrange(qc_category)
 save(qc.file.list, file='R file/qc.file.list.RData')
 
-qc.file.list %>% nrow # 6,852,925 -> 493,374 -> 250,339 -> 266,218
-qc.file.list$pubid %>% unique %>% length # 6,852,925 -> 421,201 -> 187,666 -> 200,745
+qc.file.list %>% nrow # 6,852,925 -> 493,374 -> 250,339 -> 266,218 
+qc.file.list$pubid %>% unique %>% length # 6,852,925 -> 421,201 -> 187,666 -> 200,745 
 
 ### Upload QauntTech publication list to SQL Server
 load(file='R file/qc.file.list.RData')
@@ -87,8 +89,8 @@ rm(qc.file.list)
 quant_pub.SQL <- RMySQL::dbSendQuery(
     con, paste(
       "SELECT distinct list.*, publication.pubyear, publication.doi, publication.abstract, publication.itemtitle",
-      "FROM wos2024.qc_file_list list",
-      "LEFT JOIN wos2024.publications publication",
+      "FROM wos.qc_file_list list",
+      "LEFT JOIN wos.publications publication",
       "ON list.pubid = publication.pubid",
       "WHERE publication.doc_type='Article' AND publication.pubtype = 'Journal'
       AND publication.pubyear >= 1998 AND publication.pubyear <= 2021"
@@ -231,13 +233,12 @@ quant_cit.SQL <- RMySQL::dbSendQuery(
     "SELECT distinct list.*, citations.*",
     "FROM wos.qc_file_list list",
     "LEFT JOIN wos.citations citations",
-    "ON list.pubid = citations.pub_cited",
-    "WHERE list.qc_category = 'qc11'"
+    "ON list.pubid = citations.pub_cited"
   ))
 quant_cit <- dbFetch(quant_cit.SQL, n=-1)
-length(unique(quant_cit$pubid)) # 6,512,435
+length(unique(quant_cit$pubid)) # 200,745
 save(quant_cit, file="R file/quant_cit.RData")
-write.csv(quant_funding, file="R file/quant_funding.csv", row.names=FALSE)
-rm(quant_funding, quant_funding.SQL)
+write.csv(quant_cit, file="R file/quant_cit.csv", row.names=FALSE)
+rm(quant_cit, quant_cit.SQL)
 
 

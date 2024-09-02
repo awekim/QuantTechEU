@@ -4826,7 +4826,7 @@ rm(publication_qc43, publication_qc43.SQL)
 
 ########################################
 
-keywords_qc441.SQL <- RMySQL::dbSendQuery(
+keywords_qc1a1.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct *",
     "FROM wos.keywords_plus keywords",
@@ -4848,12 +4848,12 @@ keywords_qc441.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-keywords_qc441 <- dbFetch(keywords_qc441.SQL, n=-1)
-length(unique(keywords_qc441$pubid)) # 
-save(keywords_qc441, file="R file/keywords_qc441.RData")
-rm(keywords_qc441, keywords_qc441.SQL)
+keywords_qc1a1 <- dbFetch(keywords_qc1a1.SQL, n=-1)
+length(unique(keywords_qc1a1$pubid)) # 
+save(keywords_qc1a1, file="R file/keywords_qc1a1.RData")
+rm(keywords_qc1a1, keywords_qc1a1.SQL)
 
-publication_qc441.SQL <- RMySQL::dbSendQuery(
+publication_qc1a1.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct publication.pubid, publication.doc_type, publication.pubyear, publication.pubtype, 
     publication.abstract, publication.source, publication.itemtitle",
@@ -4894,14 +4894,14 @@ publication_qc441.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-publication_qc441 <- dbFetch(publication_qc441.SQL, n=-1)
-length(unique(publication_qc441$pubid)) # 
-save(publication_qc441, file="R file/publication_qc441.RData")
-rm(publication_qc441, publication_qc441.SQL)
+publication_qc1a1 <- dbFetch(publication_qc1a1.SQL, n=-1)
+length(unique(publication_qc1a1$pubid)) # 
+save(publication_qc1a1, file="R file/publication_qc1a1.RData")
+rm(publication_qc1a1, publication_qc1a1.SQL)
 
 ########################################
 
-keywords_qc442.SQL <- RMySQL::dbSendQuery(
+keywords_qc1a2.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct *",
     "FROM wos.keywords_plus keywords",
@@ -4918,12 +4918,12 @@ keywords_qc442.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-keywords_qc442 <- dbFetch(keywords_qc442.SQL, n=-1)
-length(unique(keywords_qc442$pubid)) # 0
-save(keywords_qc442, file="R file/keywords_qc442.RData")
-rm(keywords_qc442, keywords_qc442.SQL)
+keywords_qc1a2 <- dbFetch(keywords_qc1a2.SQL, n=-1)
+length(unique(keywords_qc1a2$pubid)) # 0
+save(keywords_qc1a2, file="R file/keywords_qc1a2.RData")
+rm(keywords_qc1a2, keywords_qc1a2.SQL)
 
-publication_qc442.SQL <- RMySQL::dbSendQuery(
+publication_qc1a2.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct publication.pubid, publication.doc_type, publication.pubyear, publication.pubtype, 
     publication.abstract, publication.source, publication.itemtitle",
@@ -4954,15 +4954,15 @@ publication_qc442.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-publication_qc442 <- dbFetch(publication_qc442.SQL, n=-1)
-length(unique(publication_qc442$pubid)) # 2690
-save(publication_qc442, file="R file/publication_qc442.RData")
-rm(publication_qc442, publication_qc442.SQL)
+publication_qc1a2 <- dbFetch(publication_qc1a2.SQL, n=-1)
+length(unique(publication_qc1a2$pubid)) # 2690
+save(publication_qc1a2, file="R file/publication_qc1a2.RData")
+rm(publication_qc1a2, publication_qc1a2.SQL)
 
 
 ########################################
 
-keywords_qc443.SQL <- RMySQL::dbSendQuery(
+keywords_qc1a3.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct *",
     "FROM wos.keywords_plus keywords",
@@ -5067,12 +5067,12 @@ keywords_qc443.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-keywords_qc443 <- dbFetch(keywords_qc443.SQL, n=-1)
-length(unique(keywords_qc443$pubid)) # 0
-save(keywords_qc443, file="R file/keywords_qc443.RData")
-rm(keywords_qc443, keywords_qc443.SQL)
+keywords_qc1a3 <- dbFetch(keywords_qc1a3.SQL, n=-1)
+length(unique(keywords_qc1a3$pubid)) # 0
+save(keywords_qc1a3, file="R file/keywords_qc1a3.RData")
+rm(keywords_qc1a3, keywords_qc1a3.SQL)
 
-publication_qc443.SQL <- RMySQL::dbSendQuery(
+publication_qc1a3.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct publication.pubid, publication.doc_type, publication.pubyear, publication.pubtype, 
     publication.abstract, publication.source, publication.itemtitle",
@@ -5279,14 +5279,14 @@ publication_qc443.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-publication_qc443 <- dbFetch(publication_qc443.SQL, n=-1)
-length(unique(publication_qc443$pubid)) # 792
-save(publication_qc443, file="R file/publication_qc443.RData")
-rm(publication_qc443, publication_qc443.SQL)
+publication_qc1a3 <- dbFetch(publication_qc1a3.SQL, n=-1)
+length(unique(publication_qc1a3$pubid)) # 792
+save(publication_qc1a3, file="R file/publication_qc1a3.RData")
+rm(publication_qc1a3, publication_qc1a3.SQL)
 
 ########################################
 
-keywords_qc444.SQL <- RMySQL::dbSendQuery(
+keywords_qc1a4.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct *",
     "FROM wos.keywords_plus keywords",
@@ -5359,12 +5359,12 @@ keywords_qc444.SQL <- RMySQL::dbSendQuery(
       LOWER(keywords.keyword) LIKE '%learning%'
     ))"
   ))
-keywords_qc444 <- dbFetch(keywords_qc444.SQL, n=-1)
-length(unique(keywords_qc444$pubid)) # 769
-save(keywords_qc444, file="R file/keywords_qc444.RData")
-rm(keywords_qc444, keywords_qc444.SQL)
+keywords_qc1a4 <- dbFetch(keywords_qc1a4.SQL, n=-1)
+length(unique(keywords_qc1a4$pubid)) # 769
+save(keywords_qc1a4, file="R file/keywords_qc1a4.RData")
+rm(keywords_qc1a4, keywords_qc1a4.SQL)
 
-publication_qc444.SQL <- RMySQL::dbSendQuery(
+publication_qc1a4.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct publication.pubid, publication.doc_type, publication.pubyear, publication.pubtype, 
     publication.abstract, publication.source, publication.itemtitle",
@@ -5507,14 +5507,14 @@ publication_qc444.SQL <- RMySQL::dbSendQuery(
       LOWER(publication.itemtitle) LIKE '%learning%'
     ))"
   ))
-publication_qc444 <- dbFetch(publication_qc444.SQL, n=-1)
-length(unique(publication_qc444$pubid)) # 5116
-save(publication_qc444, file="R file/publication_qc444.RData")
-rm(publication_qc444, publication_qc444.SQL)
+publication_qc1a4 <- dbFetch(publication_qc1a4.SQL, n=-1)
+length(unique(publication_qc1a4$pubid)) # 5116
+save(publication_qc1a4, file="R file/publication_qc1a4.RData")
+rm(publication_qc1a4, publication_qc1a4.SQL)
 
 ########################################
 
-keywords_qc445.SQL <- RMySQL::dbSendQuery(
+keywords_qc1a5.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct *",
     "FROM wos.keywords_plus keywords",
@@ -5602,12 +5602,12 @@ keywords_qc445.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-keywords_qc445 <- dbFetch(keywords_qc445.SQL, n=-1)
-length(unique(keywords_qc445$pubid)) # 0
-save(keywords_qc445, file="R file/keywords_qc445.RData")
-rm(keywords_qc445, keywords_qc445.SQL)
+keywords_qc1a5 <- dbFetch(keywords_qc1a5.SQL, n=-1)
+length(unique(keywords_qc1a5$pubid)) # 0
+save(keywords_qc1a5, file="R file/keywords_qc1a5.RData")
+rm(keywords_qc1a5, keywords_qc1a5.SQL)
 
-publication_qc445.SQL <- RMySQL::dbSendQuery(
+publication_qc1a5.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct publication.pubid, publication.doc_type, publication.pubyear, publication.pubtype, 
     publication.abstract, publication.source, publication.itemtitle",
@@ -5780,14 +5780,14 @@ publication_qc445.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-publication_qc445 <- dbFetch(publication_qc445.SQL, n=-1)
-length(unique(publication_qc445$pubid)) # 3824
-save(publication_qc445, file="R file/publication_qc445.RData")
-rm(publication_qc445, publication_qc445.SQL)
+publication_qc1a5 <- dbFetch(publication_qc1a5.SQL, n=-1)
+length(unique(publication_qc1a5$pubid)) # 3824
+save(publication_qc1a5, file="R file/publication_qc1a5.RData")
+rm(publication_qc1a5, publication_qc1a5.SQL)
 
 ########################################
 
-keywords_qc446.SQL <- RMySQL::dbSendQuery(
+keywords_qc1a6.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct *",
     "FROM wos.keywords_plus keywords",
@@ -5821,12 +5821,12 @@ keywords_qc446.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-keywords_qc446 <- dbFetch(keywords_qc446.SQL, n=-1)
-length(unique(keywords_qc446$pubid)) # 0
-save(keywords_qc446, file="R file/keywords_qc446.RData")
-rm(keywords_qc446, keywords_qc446.SQL)
+keywords_qc1a6 <- dbFetch(keywords_qc1a6.SQL, n=-1)
+length(unique(keywords_qc1a6$pubid)) # 0
+save(keywords_qc1a6, file="R file/keywords_qc1a6.RData")
+rm(keywords_qc1a6, keywords_qc1a6.SQL)
 
-publication_qc446.SQL <- RMySQL::dbSendQuery(
+publication_qc1a6.SQL <- RMySQL::dbSendQuery(
   con, paste(
     "SELECT distinct publication.pubid, publication.doc_type, publication.pubyear, publication.pubtype, 
     publication.abstract, publication.source, publication.itemtitle",
@@ -5891,10 +5891,10 @@ publication_qc446.SQL <- RMySQL::dbSendQuery(
       )
     )"
   ))
-publication_qc446 <- dbFetch(publication_qc446.SQL, n=-1)
-length(unique(publication_qc446$pubid)) # 62
-save(publication_qc446, file="R file/publication_qc446.RData")
-rm(publication_qc446, publication_qc446.SQL)
+publication_qc1a6 <- dbFetch(publication_qc1a6.SQL, n=-1)
+length(unique(publication_qc1a6$pubid)) # 62
+save(publication_qc1a6, file="R file/publication_qc1a6.RData")
+rm(publication_qc1a6, publication_qc1a6.SQL)
 
 
 ############################ OLD VERSION ############################

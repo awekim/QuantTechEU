@@ -234,6 +234,7 @@ qc_network.all <- ALL.G.p.all %>%
   ggnet2(size = "degree", label=TRUE, #edge.size = "degree", 
          alpha=0.5, edge.color="grey", edge.alpha = 0.5) +
   guides(size=FALSE) + ggtitle("all")
+qc_network.all
 ggsave(filename=paste0("R figure/",names(ALL.G.p.all)[1],"_network_all.png"), 
        plot=qc_network.all)
 
@@ -340,26 +341,34 @@ ALL.EL.total.org.all %>% arrange(desc(weight)) %>%
 write.csv(ALL.EL.total.org.all, file="R file/ALL.EL.total.org.all.hur.csv")
 
 # non-weight version  
-ALL.G.p.all <- graph.data.frame(ALL.EL.total.all, directed=FALSE)
-names(ALL.G.p.all) <- unique(quant_inst_ed_eu_fixed$qc_category)[[j]]
-save(ALL.G.p.all, file="R file/ALL.G.p.all.RData")
+ALL.G.p.all.org <- graph.data.frame(ALL.EL.total.org.all, directed=FALSE)
+save(ALL.G.p.all.org, file="R file/ALL.G.p.all.org.RData")
 
-ALL.EL.p.all <- data.frame(get.edgelist(ALL.G.p.all),
-                           weight=round(E(ALL.G.p.all)$weight, 3))
-names(ALL.EL.p.all) <- c("Source", "Target", "weight")
+ALL.EL.p.all.org <- data.frame(get.edgelist(ALL.G.p.all.org),
+                           weight=round(E(ALL.G.p.all.org)$weight, 3))
+names(ALL.EL.p.all.org) <- c("Source", "Target", "weight")
 
-ALL.EL.p.all <- ALL.EL.p.all %>% 
+ALL.EL.p.all.org <- ALL.EL.p.all.org %>% 
   group_by(Source, Target) %>%
   summarize_at("weight", sum)
 
-ID <- sort(unique(c(ALL.EL.p.all$Source, ALL.EL.p.all$Target)))
+ID <- sort(unique(c(ALL.EL.p.all.org$Source, ALL.EL.p.all.org$Target)))
 Node.table.all <- data.frame(Id=ID, Label=ID, tech=substr(ID, 0,1))
 
 # Network analysis
-summ.cen.all <- get.centrality(ALL.G.p.all) %>% 
+summ.cen.all.org <- get.centrality(ALL.G.p.all.org) %>% 
   mutate(qc_category = "all")
-save(summ.cen.all, file="R file/summ.cen.all.RData")
+save(summ.cen.all.org, file="R file/summ.cen.all.org.RData")
+summ.cen.all.org %>% arrange(desc(Deg))
 
+ALL.EL.total.org.all %>% arrange(desc(weight)) %>%
+  head(20)
+
+ALL.EL.total.org.all %>% arrange(desc(weight)) %>% head(200) %>%
+  graph.data.frame(directed=FALSE) %>%
+  ggnet2(size = "degree", label=FALSE, #edge.size = "weights", 
+         alpha=0.5, edge.color="grey") +
+  guides(size=FALSE) 
 
 
 ####################################################################################
