@@ -8,7 +8,7 @@ import csv
 
 desired_model = 'llama4:scout'
 input_csv_path = 'I:/Data_for_practice/Rfiles/QuanTech/quant_pub_ed_eu.csv'
-output_csv_path = 'C:/Users/user/Desktop/[git]/quantum_classification_results.csv'
+output_csv_path = 'C:/Users/user/Desktop/[git]/QuantTechEU/QuanTech2/quantum_classification_results.csv'
 
 def build_prompt(title: str, abstract: str) -> str:
     return f"""
