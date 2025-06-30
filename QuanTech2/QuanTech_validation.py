@@ -47,12 +47,12 @@ def classify_and_save(df: pd.DataFrame, model_name: str, output_path: str):
             done_df = pd.read_csv(output_path)
             done_pubids = set(done_df['pubid'].tolist())
         except Exception as e:
-            print(f"⚠️ Could not read existing results: {e}")
+            print(f"Could not read existing results: {e}")
 
     df = df[~df['pubid'].isin(done_pubids)].reset_index(drop=True)
 
     if df.empty:
-        print("✅ All publications are already classified. Nothing to do.")
+        print("All publications are already classified. Nothing to do.")
         return
 
     for i, row in df.iterrows():
@@ -88,8 +88,8 @@ def classify_and_save(df: pd.DataFrame, model_name: str, output_path: str):
 
 if __name__ == "__main__":
     if not os.path.exists(input_csv_path):
-        print(f"❌ Input file not found: {input_csv_path}")
+        print(f"Input file not found: {input_csv_path}")
     else:
         data = load_and_clean_data(input_csv_path)
         classify_and_save(data, desired_model, output_csv_path)
-        print(f"✅ Classification complete. Results saved to: {output_csv_path}")
+        print(f"Classification complete. Results saved to: {output_csv_path}")
